@@ -25,3 +25,26 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.hover\:glitch:hover {
+  filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.7));
+  animation: glitch-animation 0.5s infinite;
+}
+
+@keyframes glitch-animation {
+  0% {
+    transform: translate(0);
+  }
+  25% {
+    transform: translate(2px, -2px);
+  }
+  50% {
+    transform: translate(-2px, 2px);
+  }
+  75% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(-2px, 2px);
+  }
+}
