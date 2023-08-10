@@ -1,9 +1,9 @@
 import Image from 'next/image'
 
+
 // Array of adjectives and nouns to create random usernames
 const adjectives: string[] = ['happy', 'funny', 'silly', 'clever', 'bright', 'vibrant', 'awesome', 'brave', 'kind', 'gentle'];
 const nouns: string[] = ['unicorn', 'panda', 'star', 'wizard', 'rocket', 'cookie', 'dolphin', 'tiger', 'flower', 'rainbow'];
-
 
 // Function to generate a random username
 function generateUsername(): string {
@@ -13,6 +13,30 @@ function generateUsername(): string {
   const username: string = `${randomAdjective}_${randomNoun}`;
   return username;
 }
+
+interface UserProfile {
+  profile_image: string;
+  profile_name: string;
+  profile_description: string;
+  social_media: {
+    social_1: string,
+    social_2: string,
+    social_3: string,
+  }
+}
+
+const user: UserProfile = {
+  profile_image: "https://picsum.photos/200",
+  profile_name: "John Doe",
+  profile_description: "A brief description of John Doe.",
+  social_media: {
+    social_1: 'ww.3//twitter.clmo',
+    social_2: 'ww.3//youtube.clmo',
+    social_3: 'ww.3//t.clmo',
+  } 
+};
+
+
 
 export default function Home() {
 
@@ -79,6 +103,30 @@ export default function Home() {
               ) : "no"
             }
 
+          </div>
+
+          {/* Div Content on the right */}
+          <div>
+
+            {/* 
+              Basicaly the profile page i guess right?
+              - image
+              - name
+              - description
+              - social 
+            */}
+            
+            <img src={user.profile_image} alt="profile" />
+
+            <h2>{user.profile_name}</h2>
+            <p>{user.profile_description}</p>
+
+            <ul>
+              <li>{user.social_media.social_1}</li>
+              <li>{user.social_media.social_2}</li>
+              <li>{user.social_media.social_3}</li>
+            </ul>
+            
           </div>
 
 
