@@ -11,7 +11,7 @@ export default function Home() {
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <h2>hi</h2>
         <p>change me</p>
-        <button onClick={gg}> Click Me </button>
+        <button> Click Me </button>
       </main>
     )
 }
