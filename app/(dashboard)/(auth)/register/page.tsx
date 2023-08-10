@@ -7,7 +7,7 @@ const RegisterPage = () => {
     };
     
       const handleNFTMint = () => {
-        // Your logic for minting an NFT
+        // Your logic for minting an NFT ad
       };
 
     return (
@@ -18,7 +18,7 @@ const RegisterPage = () => {
               <span>Username: </span>
               <input type="text" name="username" id="username" />
             </label>
-            <button onClick={handleUsername}>Need a username? 🩶</button>
+            <a>Need a username? 🩶</a>
             <label htmlFor="password">
               <span>Password: </span>
               <input type="password" id="password" />
@@ -31,7 +31,8 @@ const RegisterPage = () => {
               <span>Profile Image:</span>
               <input type="file" />
             </label>
-            <button onClick={handleNFTMint}>Or would you like to mint an NFT?</button>
+            <a>Or would you like to mint an NFT?</a>
+            <button>submit</button>
           </form>
         </div>
       );

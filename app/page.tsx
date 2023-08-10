@@ -86,7 +86,7 @@ export default function Home() {
         */}
       <div className='w-full flex flex-row-reverse bg-teal-950 text-white text-right p-12'>
         <nav className='w-28 flex justify-between'>
-          <a href="#">Login</a>
+          <a href="/sign-in">Login</a>
           <a href="/register">Register</a>
         </nav>
       </div>
