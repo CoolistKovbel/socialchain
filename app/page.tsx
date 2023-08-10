@@ -125,44 +125,47 @@ export default function Home() {
           </aside>
 
           {/* Div Content on the right */}
-          <div className='w-3/4'>
+          <div className='w-3/4 p-3.5'>
 
-            {/* 
-              Basicaly the profile page i guess right?
-              - image
-              - name
-              - description
-              - social 
-            */}
-            
-            <img src={user.profile_image} alt="profile" />
+            <div className='flex flex-wrap w-full h-2/5'>
 
-            <h2>{user.profile_name}</h2>
-            <p>{user.profile_description}</p>
+              <div className='w-52 h-52'>
+                <img src={user.profile_image} alt="profile" />
+              </div>
 
-            <ul>
+              <div>
+                <h2>{user.profile_name}</h2>
+                <p>{user.profile_description}</p>
+              </div>
+
+              <ul>
               <li>{user.social_media.social_1}</li>
               <li>{user.social_media.social_2}</li>
               <li>{user.social_media.social_3}</li>
-            </ul>
+              </ul>
 
-            <div>
-              <a href="#">Recive</a>
-              <a href="#">Send</a>
-              <a href="#">Poke</a>
-              <a href="#">message</a>
+              <div>
+                <a href="#">Recive</a>
+                <a href="#">Send</a>
+                <a href="#">Poke</a>
+                <a href="#">message</a>
+              </div>
+
             </div>
 
             {/* Messages left from other users */}
-            <div>
+            <div className='flex w-full gap-4 flex-col'>
               {
                 messages.map((message) => (
-                  <div>
+                  <div className='w-full h-3/12 flex justify-between items-center  p-3.5'>
+
+                    <img src={message.userImage} alt="user" className='rounded-2xl'/>
+
                     <div>
-                      <img src={message.userImage} alt="user" />
                       <p>{message.user}</p>
-                    </div>
                       <p>{message.message}</p>
+                    </div>
+
                   </div>
                 ))
               }
