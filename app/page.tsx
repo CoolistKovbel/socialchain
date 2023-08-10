@@ -55,6 +55,25 @@ export default function Home() {
       profile_image: "https://picsum.photos/200"
     },
   ]
+
+  // List of messages
+  const messages = [
+    {
+      message: "Wow very cool you wanna code?",
+      user: accounts[0].username,
+      userImage: accounts[0].profile_image
+    },
+    {
+      message: "Wow very cool you wanna code?",
+      user: accounts[1].username,
+      userImage: accounts[1].profile_image
+    },
+    {
+      message: "Wow very cool you wanna code?",
+      user: accounts[2].username,
+      userImage: accounts[2].profile_image
+    }
+  ]
   
 
 
@@ -126,6 +145,28 @@ export default function Home() {
               <li>{user.social_media.social_2}</li>
               <li>{user.social_media.social_3}</li>
             </ul>
+
+            <div>
+              <a href="#">Recive</a>
+              <a href="#">Send</a>
+              <a href="#">Poke</a>
+              <a href="#">message</a>
+            </div>
+
+            {/* Messages left from other users */}
+            <div>
+              {
+                messages.map((message) => (
+                  <div>
+                    <div>
+                      <img src={message.userImage} alt="user" />
+                      <p>{message.user}</p>
+                    </div>
+                      <p>{message.message}</p>
+                  </div>
+                ))
+              }
+            </div>
             
           </div>
 
