@@ -78,14 +78,14 @@ export default function Home() {
 
 
   return (
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <main className="md:container md:mx-auto">
 
         {/* 
           Header will have a seperate component
           there will be a login opition & register option
         */}
-        <div>
-          <nav>
+        <div className='w-full flex flex-row-reverse bg-teal-950 text-white text-right p-12'>
+          <nav className='w-28 flex justify-between'>
             <a href="#">Login</a>
             <a href="#">Register</a>
           </nav>
@@ -95,37 +95,37 @@ export default function Home() {
           There will be two sections divided within one another with a form content on the left and page data on the right
         */}
 
-        <section>
+        <section className='w-full flex bg-stone-700 text-white'>
 
           {/* Content on the left */}
-          <div>
+          <aside className='w-1/4 bg-gray-800 align-middle justify-center p-3.5'>
 
             {/* Content about searching and creating an account */}
-            <div>
-              <input type="text" />
+            <form className='w-full h-14'>
+              <input type="text" className=' w-full text-black' />
               {/* logo / maginify glass */}
-            </div>
+            </form>
 
             {/* List of accounts */}
             {
               accounts ? (
-                <div>
+                <nav className='bg-orange-950 p-5'>
                   {
                     accounts.map((account) => (
-                      <div key={crypto.randomUUID()}>
-                        <img src={account.profile_image} alt="profile icon" />
+                      <div key={crypto.randomUUID()} className='w-full flex items-center mb-2.5'>
+                        <img src={account.profile_image} alt="profile icon" className='w-14 h-14 mr-5' />
                         <h3>{account.username}</h3>
                       </div>
                     ))
                   }
-                </div>
+                </nav>
               ) : "no"
             }
 
-          </div>
+          </aside>
 
           {/* Div Content on the right */}
-          <div>
+          <div className='w-3/4'>
 
             {/* 
               Basicaly the profile page i guess right?
