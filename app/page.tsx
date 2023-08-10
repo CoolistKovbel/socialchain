@@ -87,13 +87,13 @@ export default function Home() {
       <div className='w-full flex flex-row-reverse bg-teal-950 text-white text-right p-12'>
         <nav className='w-28 flex justify-between'>
           <a href="#">Login</a>
-          <a href="#">Register</a>
+          <a href="/register">Register</a>
         </nav>
       </div>
 
       {/* 
           There will be two sections divided within one another with a form content on the left and page data on the right
-        */}
+      */}
 
       <section className='w-full flex bg-stone-700 text-white'>
 
@@ -189,6 +189,12 @@ export default function Home() {
                   <div>
                     <p>{message.user}</p>
                     <p>{message.message}</p>
+                  </div>
+
+                  <div>
+                    <a href="#">Profile</a>
+                    <a href="#">Like</a>
+                    <a href="#">Join</a>
                   </div>
 
                 </div>
