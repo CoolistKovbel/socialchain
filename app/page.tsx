@@ -125,7 +125,7 @@ export default function Home() {
         </aside>
 
         {/* Div Content on the right */}
-        <div className='w-3/4 p-3.5'>
+        <div className='w-3/4 p-3.5 overflow-auto'>
 
           <div className='flex flex-wrap w-full h-2/5'>
 
@@ -149,34 +149,31 @@ export default function Home() {
             </div>
             {/* Web-3 */}
             <div className="relative w-2/4 h-2/4">
-  <a
-    href="#"
-    className="absolute top-0 left-0 w-1/2 h-1/2 bg-blue-500 text-white flex justify-center items-center hover:bg-red-500 transition duration-300 hover:glitch"
-  >
-    Receive
-  </a>
-  <a
-    href="#"
-    className="absolute top-0 right-0 w-1/2 h-1/2 bg-green-500 text-white flex justify-center items-center hover:bg-yellow-500 transition duration-300 hover:glitch"
-  >
-    Send
-  </a>
-  <a
-    href="#"
-    className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-purple-500 text-white flex justify-center items-center hover:bg-pink-500 transition duration-300 hover:glitch"
-  >
-    Poke
-  </a>
-  <a
-    href="#"
-    className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-teal-500 text-white flex justify-center items-center hover:bg-indigo-500 transition duration-300 hover:glitch"
-  >
-    Message
-  </a>
-</div>
-
-
-
+              <a
+                href="#"
+                className="absolute top-0 left-0 w-1/2 h-1/2 bg-blue-500 text-white flex justify-center items-center hover:bg-red-500 transition duration-300 hover:glitch"
+              >
+                Receive
+              </a>
+              <a
+                href="#"
+                className="absolute top-0 right-0 w-1/2 h-1/2 bg-green-500 text-white flex justify-center items-center hover:bg-yellow-500 transition duration-300 hover:glitch"
+              >
+                Send
+              </a>
+              <a
+                href="#"
+                className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-purple-500 text-white flex justify-center items-center hover:bg-pink-500 transition duration-300 hover:glitch"
+              >
+                Poke
+              </a>
+              <a
+                href="#"
+                className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-teal-500 text-white flex justify-center items-center hover:bg-indigo-500 transition duration-300 hover:glitch"
+              >
+                Message
+              </a>
+            </div>
 
 
           </div>
