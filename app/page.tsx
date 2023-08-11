@@ -1,4 +1,8 @@
 import Image from 'next/image'
+'use client'
+import React, { useState } from 'react';
+import useSWR from 'swr';
+
 
 
 // Array of adjectives and nouns to create random usernames
@@ -8,7 +12,7 @@ const nouns: string[] = ['unicorn', 'panda', 'star', 'wizard', 'rocket', 'cookie
 // Function to generate a random username
 function generateUsername(): string {
   const randomAdjective: string = adjectives[Math.floor(Math.random() * adjectives.length)];
-  const randomNoun: string = nouns[Math.floor(Math.random() * nouns.length)];
+  const randomNoun: string = nouns[Math.floor(Math.random() * nouns.length)]
 
   const username: string = `${randomAdjective}_${randomNoun}`;
   return username;
@@ -38,10 +42,13 @@ const user: UserProfile = {
 
 
 
-export default function Home() {
+export default function Home({ initialAccounts }) {
+  const [selectedProfile, setSelectedProfile] = useState(null);
+  const accounts = initialAccounts || [
+
 
   // List of accounts
-  const accounts = [
+
     {
       username: generateUsername(),
       profile_image: "https://picsum.photos/200"
@@ -54,7 +61,13 @@ export default function Home() {
       username: generateUsername(),
       profile_image: "https://picsum.photos/200"
     },
-  ]
+  ];
+
+  const { data: selectedUserProfile } = useSWR(
+    selectedProfile ? `/api/profiles/${selectedProfile}` : null
+  );
+
+
 
   // List of messages
   const messages = [
@@ -73,7 +86,7 @@ export default function Home() {
       user: accounts[2].username,
       userImage: accounts[2].profile_image
     }
-  ]
+  ];
 
 
 
@@ -107,106 +120,126 @@ export default function Home() {
           </form>
 
           {/* List of accounts */}
-          {
-            accounts ? (
+          {accounts ? (
               <nav className='bg-orange-950 p-5'>
-                {
-                  accounts.map((account) => (
-                    <div key={crypto.randomUUID()} className='w-full flex items-center mb-2.5'>
-                      <img src={account.profile_image} alt="profile icon" className='w-14 h-14 mr-5' />
+                {accounts.map((account) => (
+                    <div
+                      key={account.username}
+                      className={`w-full flex items-center mb-2.5 ${
+                        selectedProfile === account.username ? 'bg-gray-600' : ''
+                      }`}
+                      onClick={() => setSelectedProfile(account.username)}
+                    >
+                      <img 
+                        src={account.profile_image} 
+                        alt="profile icon" 
+                        className='w-14 h-14 mr-5' 
+                      />
                       <h3>{account.username}</h3>
                     </div>
-                  ))
-                }
+                  ))}
               </nav>
-            ) : "no"
-          }
-
+            ) : "no"}
         </aside>
 
         {/* Div Content on the right */}
         <div className='w-3/4 p-3.5 overflow-auto'>
-
-          <div className='flex flex-wrap w-full h-2/5'>
-
-            {/* Profile image */}
-            <div className='w-2/4 h-2/4 flex justify-center items-center'>
-              <img src={user.profile_image} alt="profile" />
+          {selectedUserProfile ? (
+            <div className='flex flex-wrap w-full h-2/5'>
+              {/* Profile image */}
+              <div className='w-2/4 h-2/4 flex justify-center items-center'>
+                <img src={user.profile_image} alt="profile" />
+              </div>
+              {/* description */}
+              <div className='w-2/4 h-2/4 p-10 text-lg'>
+                <h2 className='capitalize text-2xl'>
+                  {selectedUserProfile.profile_name}
+                  </h2>
+                <p className='capitalize'>
+                  {selectedUserProfile.profile_description}
+                  </p>
+              </div>
+              {/* Social Links */}
+              <div className='w-2/4 h-2/4 p-10'>
+                <h3>Find me here:</h3>
+                <ul className='flex justify-around items-center '>
+                  <li>{user.social_media.social_1}</li>
+                  <li>{user.social_media.social_2}</li>
+                  <li>{user.social_media.social_3}</li>
+                </ul>
+              </div>
+              {/* Web-3 */}
+              <div className="relative w-2/4 h-2/4">
+                <a
+                  href="#"
+                  className="absolute top-0 left-0 w-1/2 h-1/2 bg-blue-500 text-white flex justify-center items-center hover:bg-red-500 transition duration-300 hover:glitch"
+                >
+                  Receive
+                </a>
+                <a
+                  href="#"
+                  className="absolute top-0 right-0 w-1/2 h-1/2 bg-green-500 text-white flex justify-center items-center hover:bg-yellow-500 transition duration-300 hover:glitch"
+                >
+                  Send
+                </a>
+                <a
+                  href="#"
+                  className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-purple-500 text-white flex justify-center items-center hover:bg-pink-500 transition duration-300 hover:glitch"
+                >
+                  Poke
+                </a>
+                <a
+                  href="#"
+                  className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-teal-500 text-white flex justify-center items-center hover:bg-indigo-500 transition duration-300 hover:glitch"
+                >
+                  Message
+                </a>
+              </div>
             </div>
-            {/* description */}
-            <div className='w-2/4 h-2/4 p-10 text-lg'>
-              <h2 className='capitalize text-2xl'>{user.profile_name}</h2>
-              <p className='capitalize'>{user.profile_description}</p>
-            </div>
-            {/* Social Links */}
-            <div className='w-2/4 h-2/4 p-10'>
-              <h3>Fend me here:</h3>
-              <ul className='flex justify-around items-center '>
-                <li>{user.social_media.social_1}</li>
-                <li>{user.social_media.social_2}</li>
-                <li>{user.social_media.social_3}</li>
-              </ul>
-            </div>
-            {/* Web-3 */}
-            <div className="relative w-2/4 h-2/4">
-              <a
-                href="#"
-                className="absolute top-0 left-0 w-1/2 h-1/2 bg-blue-500 text-white flex justify-center items-center hover:bg-red-500 transition duration-300 hover:glitch"
-              >
-                Receive
-              </a>
-              <a
-                href="#"
-                className="absolute top-0 right-0 w-1/2 h-1/2 bg-green-500 text-white flex justify-center items-center hover:bg-yellow-500 transition duration-300 hover:glitch"
-              >
-                Send
-              </a>
-              <a
-                href="#"
-                className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-purple-500 text-white flex justify-center items-center hover:bg-pink-500 transition duration-300 hover:glitch"
-              >
-                Poke
-              </a>
-              <a
-                href="#"
-                className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-teal-500 text-white flex justify-center items-center hover:bg-indigo-500 transition duration-300 hover:glitch"
-              >
-                Message
-              </a>
-            </div>
-
-
-          </div>
-
+          ) : null}
+        
           {/* Messages left from other users */}
-          <div className='flex w-full gap-4 flex-col'>
-            {
-              messages.map((message) => (
-                <div className='w-full h-3/12 flex justify-between items-center  p-3.5'>
-
-                  <img src={message.userImage} alt="user" className='rounded-2xl' />
-
-                  <div>
-                    <p>{message.user}</p>
-                    <p>{message.message}</p>
+          {selectedProfile ? (
+            <div className='flex w-full gap-4 flex-col'>
+              {messages
+                .filter((message) => message.user === selectedProfile)
+                .map((message) => (
+                  <div className='w-full h - 3/12 flex justify-between items -center p -3.5'>
+                    <img src={message.userImage} alt='user' className='rounded - 2x1' />
+                    <div>
+                      <p>{message.user}</p>
+                      <p>{message.message}</p>
+                    </div>
+                    <div>
+                      <a href="#">Profile</a>
+                      <a href="#">Like</a>
+                      <a href="#">Join</a>
+                    </div>
                   </div>
-
-                  <div>
-                    <a href="#">Profile</a>
-                    <a href="#">Like</a>
-                    <a href="#">Join</a>
-                  </div>
-
-                </div>
-              ))
-            }
-          </div>
-
+                ))}
+            </div>
+          ) : null}
         </div>
-
-
       </section>
-
     </main>
-  )
+  );
 }
+
+export async function fetch() {
+  // Generate random usernames here
+  const adjectives = ['happy', 'funny', 'silly', 'clever', 'bright', 'vibrant', 'awesome', 'brave', 'kind', 'gentle'];
+  const nouns = ['unicorn', 'panda', 'star', 'wizard', 'rocket', 'cookie', 'dolphin', 'tiger', 'flower', 'rainbow'];
+
+  const initialAccounts = [
+    { username: `${adjectives[Math.floor(Math.random() * adjectives.length)]}_${nouns[Math.floor(Math.random() * nouns.length)]}` },
+    { username: `${adjectives[Math.floor(Math.random() * adjectives.length)]}_${nouns[Math.floor(Math.random() * nouns.length)]}` },
+    { username: `${adjectives[Math.floor(Math.random() * adjectives.length)]}_${nouns[Math.floor(Math.random() * nouns.length)]}` }
+  ];
+
+  return {
+    props: { initialAccounts }
+  };
+}
+
+  
+      
