@@ -1,3 +1,78 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&family=Parisienne&family=Rakkas&display=swap');
+
+:root{ 
+    --background-color: #372662;
+    --text-color: #66b6ab;
+    --alert-color: #d0af7d;
+    --dark-color: #7e752a;
+    --darker-color: #4d2b3a;
+
+    --text-font: 'Heebo', sans-serif;
+    --heading-font:'Rakkas', cursive;
+    --title-font: 'Parisienne', cursive;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    margin-bottom: 5px;
+    font-family: var(--heading-font);
+}
+
+p{
+   margin-bottom: 5px;
+   font-size: 14px; 
+   font-family: var(--text-font);
+}
+
+a {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+body {
+    background-color: var(--background-color);
+    color:var(--text-color);
+}
+
+/* Main-Header Component */
+#MainHeader {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: black;
+}
+
+#MainHeader h1 {
+    font-family: var(--title-font) !important;
+    font-size: 2em;
+    text-transform: capitalize;
+}
+
+#MainHeader nav {
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+}
+
+#MainHeader nav a {
+    text-transform: uppercase;
+    background-color: var(--dark-color);
+    padding: 4px;
+    border-radius: 5px;
+}
+
+#MainHeader nav a:hover {
+    background-color: var(--alert-color);
+}
