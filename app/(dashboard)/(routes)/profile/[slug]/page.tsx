@@ -1,5 +1,6 @@
 
 import { Button } from '@/components/ui/button';
+import { Card, CardDescription, CardTitle } from '@/components/ui/card';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
@@ -25,17 +26,18 @@ const ProfilePage = ({ params }: { params: { slug: string } }) => {
     <div>
       <h1>User Profile</h1>
 
-      {/* Profile Card */}
-      <div>
+      {/* Profile card */}
+      <Card className="w-full">
+
+        <CardTitle>Username: {params.slug}</CardTitle>
+        <CardDescription>
+          {userData.user_description}
+        </CardDescription>
 
         {/* Profile image */}
-        <p>Username: {params.slug}</p>
-
-        {/* Profile image */}
-        <div className='relative w-64 h-64 '> 
-          <Image src={userData.user_image} alt="test" fill  />
-        </div>
-
+          <div className='relative w-64 h-64 '> 
+           <Image src={userData.user_image} alt="test" fill  />
+          </div>
         {/* Social Menu */}
         <nav>
           <a href={userData.social_media.x}>👨🏽‍💻</a>
@@ -50,8 +52,7 @@ const ProfilePage = ({ params }: { params: { slug: string } }) => {
           <Button>Poke</Button>
           <Button>Message</Button>
         </div>
-        
-      </div>
+      </Card>
 
       {/* Profile Comments */}
       <div>

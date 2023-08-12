@@ -103,3 +103,28 @@ body {
 
 #DashboardPage {
 }
+
+/* Componets? */
+
+#Hero {
+    width: 100%;
+    height: 720px;
+    background-image: url("../public/moon.png");
+    background-size: cover;
+}
+
+#FeaturePage {
+    padding: 10px;
+}
+#FeaturePage h2 {
+    font-size: 2.4em;
+}
+#FeaturePage > div {
+    margin: 0 auto;
+}
+#FeaturePage > div div {
+    background-color: var(--darker-color);
+    color: var(--alert-color);
+    border: 4px solid whitesmoke;
+    border-radius: 5%;
+}
