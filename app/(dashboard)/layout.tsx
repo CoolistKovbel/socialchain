@@ -1,15 +1,18 @@
+import SideBar from "@/components/sideBar"
 
 const DashboardLayout = async( {children}: {children: React.ReactNode}) => {
     return (
-        <div>
+        <div id="DashboardLayout">
             {/* SideBar */}
-            <div>
-                <h2>SideBar</h2>
-            </div>
+            <SideBar />
+
             {/* RightBar */}
-            <div>
-                <h2>Main Content</h2>
+            <div id="MainPanel">
+                {children}
             </div>
+            
         </div>
     )
 }
+
+export default DashboardLayout
