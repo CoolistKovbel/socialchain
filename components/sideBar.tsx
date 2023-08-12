@@ -53,7 +53,7 @@ export default function SideBar() {
                             <ul>
                                 {users.map((user) => (
                                     <li key={user.id}>
-                                        <Link href={`/${user.username}`}>
+                                        <Link href={`/profile/${user.username}`}>
                                             {user.username}
                                         </Link>
                                     </li>
