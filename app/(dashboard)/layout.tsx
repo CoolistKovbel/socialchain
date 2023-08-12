@@ -2,7 +2,7 @@ import SideBar from "@/components/sideBar"
 
 const DashboardLayout = async( {children}: {children: React.ReactNode}) => {
     return (
-        <div id="DashboardLayout">
+        <div id="DashboardLayout" className="w-full h-screen">
             {/* SideBar */}
             <SideBar />
 
